@@ -24,22 +24,22 @@ def drawcard(response):
         else:
             return hand
 
-header=f"{'*~~~~~~*'} WELCOME TO TAROCCHI {'*~~~~~~*'}"
+header=f"{'*~~~*'} WELCOME TO TAROCCHI {'*~~~*'}"
 print(header)
 
 
-hand1 = input("Would You Like To Draw A Card? (Y/n) ")
+hand1 = input("Draw A Card? (Y/n) ")
 hand = drawcard(hand1)
 print("***\nHere is your hand:")
 for card in hand:
-    print(f"{"*~~~~~~*":<} {card:^21} {"*~~~~~~*":>}")
+    print(f"{"*~~~*":<} {card:^21} {"*~~~*":>}")
 
-hand2 = input("Shall We Draw Another Hand? (Y/n) ")
+hand2 = input("Draw Another Hand? (Y/n) ")
 if hand2.upper() == 'Y':
     hand = drawcard(hand2)
     print("***\nHere is your hand:")
     for card in hand:
-        print(f"{"*~~~~~~*":<} {card:^21} {"*~~~~~~*":>}")
+        print(f"{"*~~~*":<} {card:^21} {"*~~~*":>}")
 print("***\nThank you for playing\n***")
 print("~"*len(header))
 
