@@ -4,11 +4,13 @@ from tarot_deck import deck
 import random
 import secrets
 
+consent = ('Y', ' ', '')
+
 def drawcard(response):
     hand=[]
 
     while True:
-        if response.upper() == 'Y':
+        if response.upper() in consent:
             if len(hand) == len(deck):
                 print("***\nThe Deck Is Empty\n***")
                 break
@@ -19,7 +21,7 @@ def drawcard(response):
                     break
             hand.append(card)
             print("***\nYou pulled:", card,"\n***")
-            response=input("Draw Again? (Y/n)")
+            response=input("Draw Again? (Y/n) ")
 
         else:
             return hand
@@ -28,11 +30,11 @@ header=f"{'*~~~*'} WELCOME TO TAROCCHI {'*~~~*'}"
 print(header)
 
 while True:
-    hand = input("Draw A Card? (Y/n) ")
-    if hand.lower() == "n":
+    hand = input("\nDraw A Card? (Y/n) ")
+    if hand.upper() not in consent:
         break
     hand = drawcard(hand)
-    print("***\nHere is your hand:")
+    print("***\nHere is your hand:\n")
     for card in hand:
         print(f"{"*~~~*":<} {card:^21} {"*~~~*":>}")
 
