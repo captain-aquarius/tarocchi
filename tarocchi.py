@@ -3,6 +3,10 @@
 from tarot_deck import deck
 import random
 import secrets
+from rich.console import Console
+from rich.panel import Panel
+
+console = Console()
 
 consent = ('Y', ' ', '')
 
@@ -20,7 +24,7 @@ def drawcard(response):
                 if card not in hand:
                     break
             hand.append(card)
-            print("***\nYou pulled:", card,"\n***")
+            console.print(Panel(card, width=25,style="bold red"))
             response=input("Draw Again? (Y/n) ")
 
         else:
@@ -35,8 +39,13 @@ while True:
         break
     hand = drawcard(hand)
     print("***\nHere is your hand:\n")
-    for card in hand:
-        print(f"{"*~~~*":<} {card:^21} {"*~~~*":>}")
+    hand_str = "\n".join(hand)
+    console.print(Panel(hand_str, width=25, title="[bright_yellow]HAND[/]", style="bold red"))
+    copy = input("Print Hand for copying? Y/n ")
+    if copy.upper() in consent:
+        console.print(hand_str.replace("\n", ", "), style="yellow")
+    #for card in hand:
+    #   print(f"{"*~~~*":<} {card:^21} {"*~~~*":>}")
 
 print("***\nThank you for playing\n***")
 print("~"*len(header))
